@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
+
 const styles = theme => ({
     toolbarMain: {
         borderBottom: `1px solid ${theme.palette.grey[300]}`,
@@ -30,7 +31,6 @@ class Nav extends React.Component{
                     <Typography variant="overline" gutterBottom align="center" className={classes.toolbarTitle}>lorem ipsum</Typography>
                 </Toolbar>
             </div>
-
         );
     }
 }
