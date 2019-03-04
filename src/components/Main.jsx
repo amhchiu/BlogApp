@@ -1,5 +1,5 @@
 import React from 'react';
-import Blog from './Blog';
+import BlogContainer from '../containers/BlogContainer';
 import { Switch, Route } from 'react-router-dom';
 
 class Main extends React.Component{
@@ -8,7 +8,7 @@ class Main extends React.Component{
         return(
             <main>
                 <Switch>
-                    <Route exact path='/' component={Blog} />
+                    <Route exact path='/' component={BlogContainer} />
                 </Switch>
             </main>
         );

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import BlogPost from './BlogPost';
+import BlogPostCard from './BlogPostCard';
 
 const styles = theme => {};
 
@@ -11,15 +11,23 @@ class Blog extends React.Component{
     constructor(props){
         super(props);
     }
-
-    componentWillMount(){
-        
-    }
+    
+    componentDidMount(){
+        this.props.fetchBlogPosts();
+    } 
 
     render(){
+        let posts = this.props.blogposts
         return(
             <div>
-                <BlogPost />
+                {posts.blogposts.map( post =>
+                    <BlogPostCard 
+                    key={post._id}
+                    postObj={post}
+                    />
+                )
+                }
+                
             </div> 
         );
     }
@@ -28,5 +36,6 @@ class Blog extends React.Component{
 export default withStyles(styles)(Blog);
 
 Blog.propTypes = {
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    fetchBlogPosts: PropTypes.any
 };

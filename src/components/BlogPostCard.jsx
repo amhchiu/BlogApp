@@ -23,7 +23,7 @@ const styles = theme => ({
     },
 });
 
-class BlogPost extends React.Component{
+class BlogPostCard extends React.Component{
     constructor(){
         super();
     }
@@ -60,8 +60,8 @@ class BlogPost extends React.Component{
     }
 }
 
-export default withStyles(styles)(BlogPost);
+export default withStyles(styles)(BlogPostCard);
 
-BlogPost.propTypes = {
+BlogPostCard.propTypes = {
     classes: PropTypes.object.isRequired
 };
