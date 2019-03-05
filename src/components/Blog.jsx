@@ -11,7 +11,7 @@ class Blog extends React.Component{
     constructor(props){
         super(props);
     }
-    
+
     componentDidMount(){
         this.props.fetchBlogPosts();
     } 
@@ -20,14 +20,15 @@ class Blog extends React.Component{
         let posts = this.props.blogposts
         return(
             <div>
-                {posts.blogposts.map( post =>
-                    <BlogPostCard 
-                    key={post._id}
-                    postObj={post}
-                    />
-                )
+                {
+                    posts.blogposts.map( post =>
+                        <BlogPostCard 
+                            key={post._id}
+                            postObj={post}
+                        />
+                    )
                 }
-                
+
             </div> 
         );
     }

@@ -8,7 +8,8 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     mainGrid: {
-        marginTop: theme.spacing.unit*3,
+        margin: theme.spacing.unit*1,
+        border: 'dotted'
     },
     mainPost: {
         border: 'solid',
@@ -20,7 +21,7 @@ const styles = theme => ({
         '&hover':{
             background: 'blue'
         }
-    },
+    }
 });
 
 class BlogPostCard extends React.Component{
@@ -37,20 +38,21 @@ class BlogPostCard extends React.Component{
     render(){
         const { classes } = this.props;
         return(
-            <div>
+            <div style={{border: 'solid', overflow: 'auto'}}>
                 <Grid container justify={'center'} spacing={40} className={classes.mainGrid}>
                     <Grid item xs={12} border={1}>
-                        <Typography variant="h6" gutterBottom >
-                            <a className={classes.hoverChange} onClick={this._onTitleClick.bind(this)}>Blog Title</a>
+                        <Typography variant="h6" gutterBottom style={{cursor: 'pointer'}} >
+                            <a className={classes.hoverChange} onClick={this._onTitleClick.bind(this)}>{this.props.postObj.title}</a>
                         </Typography>
-                        <Typography paragraph variant="body1" gutterBottom className={classes.mainPost}>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-                            unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-                            dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-                            unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-                            dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+                        <Typography gutterBottom noWrap variant="body1" gutterBottom className={classes.mainPost}>
+                            {this.props.postObj.body}
                         </Typography>   
+                        <Typography variant='caption' inline>
+                            {this.props.postObj.author}
+                        </Typography>
+                        <Typography variant='caption' inline>
+                            {' '+this.props.postObj.date}
+                        </Typography>
                     </Grid>
                     <Divider />
                 </Grid>

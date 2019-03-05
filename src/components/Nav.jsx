@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = theme => ({
     toolbarMain: {
@@ -15,6 +15,9 @@ const styles = theme => ({
     toolbarSecondary: {
         justifyContent: 'space-between',
     },
+    avatar: {
+        margin: 10,
+    }
 });
 
 class Nav extends React.Component{
@@ -23,12 +26,13 @@ class Nav extends React.Component{
         return(
             <div>
                 <Toolbar className={classes.toolbarMain}>
+                    <Avatar alt="amhchiu-avatar" src='../media/eikichi_onizuka.jpg'  className={classes.avatar} />
                     <Typography variant="h6" color="inherit">
-                        Home
+                        AMHCHIU
                     </Typography>
                 </Toolbar>
                 <Toolbar variant="dense" className={classes.toolbarSecondary}>
-                    <Typography variant="overline" gutterBottom align="center" className={classes.toolbarTitle}>lorem ipsum</Typography>
+                    <Typography variant="overline" gutterBottom align="center" className={classes.toolbarTitle}>navigation links here</Typography>
                 </Toolbar>
             </div>
         );
