@@ -7,3 +7,7 @@ export const blogpostsFromURL = () => (dispatch) => {
         })
         .catch( err => dispatch({ type: 'LOAD_BLOGPOST_ERROR', payload: err.toString() }));
 };
+
+export const blogpostFromID = () => (dispatch) => {
+    
+};

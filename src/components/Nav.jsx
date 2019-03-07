@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+
+import { Link } from 'react-router-dom';
+import {materialFormStyle} from '../styles/styles';
 
 const styles = theme => ({
     toolbarMain: {
@@ -17,8 +21,10 @@ const styles = theme => ({
     },
     avatar: {
         margin: 10,
-    }
+    },
+    ...materialFormStyle(theme)
 });
+
 
 class Nav extends React.Component{
     render(){
@@ -27,9 +33,11 @@ class Nav extends React.Component{
             <div>
                 <Toolbar className={classes.toolbarMain}>
                     <Avatar alt="amhchiu-avatar" src='../media/eikichi_onizuka.jpg'  className={classes.avatar} />
-                    <Typography variant="h6" color="inherit">
-                        AMHCHIU
-                    </Typography>
+                    <Link to='/' className={classes.linkRouterStyling}>
+                        <Typography variant="h6" color="inherit">
+                            AMHCHIU
+                        </Typography>
+                    </Link>
                 </Toolbar>
                 <Toolbar variant="dense" className={classes.toolbarSecondary}>
                     <Typography variant="overline" gutterBottom align="center" className={classes.toolbarTitle}>navigation links here</Typography>

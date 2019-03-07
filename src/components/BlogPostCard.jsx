@@ -5,23 +5,35 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
+
+import {materialFormStyle} from '../styles/styles';
 
 const styles = theme => ({
     mainGrid: {
-        margin: theme.spacing.unit*1,
-        border: 'dotted'
+        margin: 'auto',
+        maxWidth: '100%',
     },
     mainPost: {
         border: 'solid',
         borderWidth: '1px',
         padding: theme.spacing.unit*2,
-        height: '4em'
+        height: '4em',
+        position: 'relative'
+    },
+    mainPostSpan: {
+        position: 'absolute',
+        bottom: 0,
+        paddingBottom: '1em',
+        right: '1em',
+        left: '1em'
     },
     hoverChange: {
         '&hover':{
             background: 'blue'
         }
-    }
+    },
+    ...materialFormStyle(theme)
 });
 
 class BlogPostCard extends React.Component{
@@ -34,25 +46,31 @@ class BlogPostCard extends React.Component{
         console.log("click");
     }
 
-        
+
     render(){
         const { classes } = this.props;
         return(
-            <div style={{border: 'solid', overflow: 'auto'}}>
+            <div> 
                 <Grid container justify={'center'} spacing={40} className={classes.mainGrid}>
                     <Grid item xs={12} border={1}>
-                        <Typography variant="h6" gutterBottom style={{cursor: 'pointer'}} >
-                            <a className={classes.hoverChange} onClick={this._onTitleClick.bind(this)}>{this.props.postObj.title}</a>
-                        </Typography>
-                        <Typography gutterBottom noWrap variant="body1" gutterBottom className={classes.mainPost}>
-                            {this.props.postObj.body}
-                        </Typography>   
-                        <Typography variant='caption' inline>
-                            {this.props.postObj.author}
-                        </Typography>
-                        <Typography variant='caption' inline>
-                            {' '+this.props.postObj.date}
-                        </Typography>
+                        <Link to={'/entry/'+this.props.postObj.title} className={classes.linkRouterStyling}>
+                            <Typography variant="h6" gutterBottom style={{cursor: 'pointer'}} >
+                                {this.props.postObj.title}
+                            </Typography>
+                        </Link>
+                        <div className={classes.mainPost}>
+                            <Typography gutterBottom noWrap variant="body1" gutterBottom >
+                                {this.props.postObj.description}
+                            </Typography>   
+                            <div className={classes.mainPostSpan}>
+                                <Typography variant='caption' inline>
+                                    {this.props.postObj.author}
+                                </Typography>
+                                <Typography variant='caption' inline style={{float: 'right'}}>
+                                    {' '+this.props.postObj.date}
+                                </Typography>
+                            </div>
+                        </div>
                     </Grid>
                     <Divider />
                 </Grid>
