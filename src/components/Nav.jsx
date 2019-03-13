@@ -17,7 +17,7 @@ const styles = theme => ({
         flex: 1,
     },
     toolbarSecondary: {
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly'
     },
     avatar: {
         margin: 10,
@@ -40,7 +40,12 @@ class Nav extends React.Component{
                     </Link>
                 </Toolbar>
                 <Toolbar variant="dense" className={classes.toolbarSecondary}>
-                    <Typography variant="overline" gutterBottom align="center" className={classes.toolbarTitle}>navigation links here</Typography>
+                    <Link to='/About' className={classes.linkRouterStyling}>
+                        <Typography variant="overline" gutterBottom inline align="center" className={classes.toolbarTitle}>About</Typography>
+                    </Link>
+                    <Link align='center' to='/Create' className={classes.linkRouterStyling}>
+                        <Typography variant="overline" gutterBottom inline align="center" className={classes.toolbarTitle}>Create</Typography>
+                    </Link>
                 </Toolbar>
             </div>
         );
