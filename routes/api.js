@@ -8,4 +8,10 @@ router.get('/posts', function(req, res){
     });
 });
 
+router.post('/posts', function(req, res){
+    Blog.create(req.body).then(function(post){
+        res.send(post);
+    });
+});
+
 module.exports = router;

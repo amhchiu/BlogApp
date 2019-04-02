@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Create from '../components/Create';
+import {createNewPost} from '../actions/actions';
 
 const mapStateToProps = state => ({ 
     blogposts: state.blog,
@@ -7,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+    publishPost: content => dispatch(createNewPost(content))
 });
 
 export default connect(

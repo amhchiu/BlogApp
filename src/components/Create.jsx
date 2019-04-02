@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
@@ -34,7 +35,13 @@ const MarkHotkey = (options) => {
     const { type, key } = options;
     return {
         onKeyDown(event, editor, next){
-            if(!event.metaKey || event.key != key) return next();
+            let ctrl = null;
+            if(window.navigator.platform == 'Win32'){
+                ctrl = event.ctrlKey;
+            } else {
+                ctrl = event.metaKey;
+            }
+            if(!ctrl || event.key != key) return next();
             event.preventDefault();
             editor.toggleMark(type);
         },
@@ -65,6 +72,11 @@ class Create extends React.Component{
         this.setState({value: e.value});
     }
 
+    onClick(){
+        const content = JSON.stringify(this.state.value.toJSON());
+        this.props.publishPost(content);
+    }
+
     renderMark(props, editor, next){
         switch (props.mark.type) {
             case 'bold':
@@ -83,14 +95,42 @@ class Create extends React.Component{
         }
     }
 
+    getOS() {
+        var userAgent = window.navigator.userAgent,
+            platform = window.navigator.platform,
+            macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+            windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+            iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+            os = null;
+        if (macosPlatforms.indexOf(platform) !== -1) {
+          os = 'Mac OS';
+        } else if (iosPlatforms.indexOf(platform) !== -1) {
+          os = 'iOS';
+        } else if (windowsPlatforms.indexOf(platform) !== -1) {
+          os = 'Windows';
+        } else if (/Android/.test(userAgent)) {
+          os = 'Android';
+        } else if (!os && /Linux/.test(platform)) {
+          os = 'Linux';
+        }
+        return os;
+      }
+
+
+
     render(){
         return(
+            <>
             <Editor 
                 plugins={plugins}
                 value={this.state.value} 
-                onChange={this.handleChange.bind(this)} 
+                onChange={this.handleChange.bind(this)}
                 renderMark={this.renderMark}
             />
+            <Button onClick={this.onClick.bind(this)}>
+                Publish
+            </Button>
+            </>
         );
     }
 }

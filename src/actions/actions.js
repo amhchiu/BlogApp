@@ -12,7 +12,8 @@ export const blogpostFromID = () => (dispatch) => {
     
 };
 
-export const createNewPost = () => (dispatch) => {
+export const createNewPost = (content) => (dispatch) => {
+    console.log(content);
     axios.post('http://localhost:8080/api/posts')
         .then( ({data}) => {
             dispatch({type: 'CREATE_POST_SUCCESS', payload: data});
