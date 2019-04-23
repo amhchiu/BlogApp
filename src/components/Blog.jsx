@@ -12,10 +12,10 @@ class Blog extends React.Component{
         super(props);
     }
 
-    componentDidMount(){
-        this.props.fetchBlogPosts();
-    } 
-
+    componentDidMount(){ 
+        console.log(this.props.blogposts);
+    }
+    
     render(){
         let posts = this.props.blogposts
         return(

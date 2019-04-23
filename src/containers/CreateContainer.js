@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    publishPost: content => dispatch(createNewPost(content))
+    publishPost: query => dispatch(createNewPost(query))
 });
 
 export default connect(

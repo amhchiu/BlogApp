@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { Button, Input } from '@material-ui/core';
 
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
 
 const styles = theme => ({
-
+    input: {
+        width: 100
+    }
 });
 
 const initialValue = Value.fromJSON({
@@ -74,7 +76,14 @@ class Create extends React.Component{
 
     onClick(){
         const content = JSON.stringify(this.state.value.toJSON());
-        this.props.publishPost(content);
+        let query = {
+            title: 'default title',
+            body: content,
+            description: 'default description',
+            tags: 'science; religion',
+            author: 'references account'
+        };
+        this.props.publishPost(query);
     }
 
     renderMark(props, editor, next){
@@ -121,6 +130,14 @@ class Create extends React.Component{
     render(){
         return(
             <>
+            <Input
+                placeholder="Title"
+                //disableUnderline
+                fullWidth
+                inputProps={{
+                    'aria-label': 'Description'
+                }}
+            />
             <Editor 
                 plugins={plugins}
                 value={this.state.value} 

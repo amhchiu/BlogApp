@@ -60,7 +60,7 @@ class BlogPostCard extends React.Component{
                         </Link>
                         <div className={classes.mainPost}>
                             <Typography gutterBottom noWrap variant="body1" gutterBottom >
-                                {this.props.postObj.description}
+                                {this.props.postObj.body}
                             </Typography>   
                             <div className={classes.mainPostSpan}>
                                 <Typography variant='caption' inline>

@@ -21,6 +21,14 @@ const styles = theme => ({
 });
 
 class App extends React.Component{
+
+    constructor(props){
+        super(props);
+    }
+    componentDidMount(){
+        this.props.fetchBlogPosts();
+    }
+
     render(){
         const { classes } = this.props;
         return(
