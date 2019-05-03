@@ -7,7 +7,9 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 
-import {materialFormStyle} from '../styles/styles';
+import { materialFormStyle } from '../styles/styles';
+
+import { URLFriendly } from '../../packages/generate';
 
 const styles = theme => ({
     mainGrid: {
@@ -36,49 +38,83 @@ const styles = theme => ({
     ...materialFormStyle(theme)
 });
 
-class BlogPostCard extends React.Component{
-    constructor(){
-        super();
-    }
+// class BlogPostCard extends React.Component{
+//     constructor(){
+//         super();
+//     }
 
 
-    _onTitleClick(){
-        console.log("click");
-    }
+//     _onTitleClick(){
+//         console.log("click");
+//         console.log(URLFriendly('Hello-World'))
+//     }
 
+//     //GenerateTitle should be here. and passed to link.´ 
 
-    render(){
-        const { classes } = this.props;
-        return(
-            <div> 
-                <Grid container justify={'center'} spacing={40} className={classes.mainGrid}>
-                    <Grid item xs={12} border={1}>
-                        <Link to={'/entry/'+this.props.postObj.title} className={classes.linkRouterStyling}>
-                            <Typography variant="h6" gutterBottom style={{cursor: 'pointer'}} >
-                                {this.props.postObj.title}
-                            </Typography>
-                        </Link>
-                        <div className={classes.mainPost}>
-                            <Typography gutterBottom noWrap variant="body1" gutterBottom >
-                                {this.props.postObj.body}
-                            </Typography>   
-                            <div className={classes.mainPostSpan}>
-                                <Typography variant='caption' inline>
-                                    {this.props.postObj.author}
-                                </Typography>
-                                <Typography variant='caption' inline style={{float: 'right'}}>
-                                    {' '+this.props.postObj.date}
-                                </Typography>
-                            </div>
-                        </div>
-                    </Grid>
-                    <Divider />
-                </Grid>
-            </div>
+//     render(){
+//         const { classes } = this.props;
+//         return(
+//             <div> 
+//                 <Grid container justify={'center'} spacing={40} className={classes.mainGrid}> 
+//                     <Grid item xs={12} border={1}>
+//                         <Link to={'/entry/'+this.props.postObj.title} className={classes.linkRouterStyling}>
+//                             <Typography variant="h6" gutterBottom style={{cursor: 'pointer'}}>
+//                                 {this.props.postObj.title}
+//                             </Typography>
+//                         </Link>
+//                         <div className={classes.mainPost}>
+//                             <Typography gutterBottom noWrap variant="body1" gutterBottom >
+//                                 {this.props.postObj.body}
+//                             </Typography>   
+//                             <div className={classes.mainPostSpan}>
+//                                 <Typography variant='caption' inline>
+//                                     {this.props.postObj.author}
+//                                 </Typography>
+//                                 <Typography variant='caption' inline style={{float: 'right'}}>
+//                                     {' '+this.props.postObj.date}
+//                                 </Typography>
+//                             </div>
+//                         </div>
+//                     </Grid>
+//                     <Divider />
+//                 </Grid>
+//             </div>
 
-        );
-    }
+//         );
+//     }
+// }
+
+const BlogPostCard = (props, {classes}) => {
+ 
+    return(
+        <div> 
+        <Grid container justify={'center'} spacing={40} className={classes.mainGrid}>
+            <Grid item xs={12} border={1}>
+                <Link to={'/entry/'+this.props.postObj.title} className={classes.linkRouterStyling}>
+                    <Typography variant="h6" gutterBottom style={{cursor: 'pointer'}}>
+                        {this.props.postObj.title}
+                    </Typography>
+                </Link>
+                <div className={classes.mainPost}>
+                    <Typography gutterBottom noWrap variant="body1" gutterBottom >
+                        {this.props.postObj.body}
+                    </Typography>   
+                    <div className={classes.mainPostSpan}>
+                        <Typography variant='caption' inline>
+                            {this.props.postObj.author}
+                        </Typography>
+                        <Typography variant='caption' inline style={{float: 'right'}}>
+                            {' '+this.props.postObj.date}
+                        </Typography>
+                    </div>
+                </div>
+            </Grid>
+            <Divider />
+        </Grid>
+    </div>
+    );
 }
+
 
 export default withStyles(styles)(BlogPostCard);
 

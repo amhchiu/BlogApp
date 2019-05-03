@@ -10,7 +10,8 @@ const blogSchema = new Schema({
     description: String,
     date: { type: Date, default: Date.now },
     tags: String,
-    author: String
+    author: String,
+    uid: String
 });
 
 //mongoose.model(mongodb document name to read, schema to check against). this is a Model. an instance of a Model is a document. 

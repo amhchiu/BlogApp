@@ -16,7 +16,16 @@ class BlogPost extends React.Component{
     }
     
     componentDidMount(){
+        /* dispatch action to query mongodb for the single blog post. this is more efficient
+         * than returning the whole blogposts array; imagine there are 10000 posts to filter through.
+         * once action queries by id or title; it returns the post object. This is stored in the reducer as blog.currentpost
+         * which is called via the container.  
+        */
         console.log(this.props.blogposts)
+
+        const { match: { params }} = this.props;
+        console.log(params.title);
+        //this.props.fetchBlogPostByTitle(params.title);
     }
 
     getMarkdownText(){

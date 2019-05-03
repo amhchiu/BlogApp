@@ -1,13 +1,16 @@
 import { connect } from 'react-redux';
 import BlogPost from '../components/BlogPost';
 import { blogpostFromID } from '../actions/actions';
+import { URLFriendly } from '../../packages/generate';
+
+
 
 const mapStateToProps = state => ({
-    blogposts: state.blog
+    blogposts: state.blog.blogposts
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchBlogPosts: id => dispatch(blogpostFromID(id))
+    fetchBlogPostById: uid => dispatch(blogpostFromID(uid))
 });
 
 export default connect(

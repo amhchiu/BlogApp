@@ -10,10 +10,12 @@ export const blogpostsFromURL = () => (dispatch) => {
         .catch( err => dispatch({ type: 'LOAD_BLOGPOST_ERROR', payload: err.toString() }));
 };
 //Load blogposts initialisation. 
-export const blogpostFromID = () => (dispatch) => {
+export const blogpostFromID = (id) => (dispatch) => {
     
 };
-
+/**
+ * POSTs new post to add to db. in handler; creates a uid and title stub. and returns. Or rather, 
+ */
 export const createNewPost = (query) => (dispatch) => {
     console.log(query);
     axios.post('http://localhost:8080/api/posts', query)

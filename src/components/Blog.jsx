@@ -15,13 +15,13 @@ class Blog extends React.Component{
     componentDidMount(){ 
         console.log(this.props.blogposts);
     }
-    
+
     render(){
         let posts = this.props.blogposts
         return(
             <div>
                 {
-                    posts.blogposts.map( post =>
+                    posts.map( post =>
                         <BlogPostCard 
                             key={post._id}
                             postObj={post}
