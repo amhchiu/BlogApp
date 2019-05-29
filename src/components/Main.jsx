@@ -13,7 +13,7 @@ class Main extends React.Component{
             <main>
                 <Switch>
                     <Route exact path='/' component={BlogContainer} />
-                    <Route path='/entry/:title' component={BlogPostContainer} />
+                    <Route path='/:uid/:title' component={BlogPostContainer} />
                     <Route path='/create' component={CreateContainer} />
                     <Route path='/about' component={AboutContainer} />
                 </Switch>

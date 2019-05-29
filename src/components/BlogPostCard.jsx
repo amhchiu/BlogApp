@@ -39,32 +39,32 @@ const styles = theme => ({
 });
 
 const BlogPostCard = ({ classes, postObj }) => {
-    return(
-    <div>
-        <Grid container justify={'center'} spacing={40} className={classes.mainGrid}>
-            <Grid item xs={12} border={1}>
-                <Link to={'/entry/' + postObj.title} className={classes.linkRouterStyling}>
-                    <Typography variant="h6" gutterBottom style={{ cursor: 'pointer' }}>
-                        {postObj.title}
-                    </Typography>
-                </Link>
-                <div className={classes.mainPost}>
-                    <Typography gutterBottom noWrap variant="body1" gutterBottom >
-                        {postObj.body}
-                    </Typography>
-                    <div className={classes.mainPostSpan}>
-                        <Typography variant='caption' inline>
-                            {postObj.author}
+    return (
+        <div>
+            <Grid container justify={'center'} spacing={40} className={classes.mainGrid}>
+                <Grid item xs={12} border={1}>
+                    <Link to={'/' + postObj.uid + '/' + postObj.title} className={classes.linkRouterStyling}>
+                        <Typography variant="h6" gutterBottom style={{ cursor: 'pointer' }}>
+                            {postObj.title}
                         </Typography>
-                        <Typography variant='caption' inline style={{ float: 'right' }}>
-                            {' ' + postObj.date}
+                    </Link>
+                    <div className={classes.mainPost}>
+                        <Typography gutterBottom noWrap variant="body1" gutterBottom >
+                            {postObj.body}
                         </Typography>
+                        <div className={classes.mainPostSpan}>
+                            <Typography variant='caption' inline>
+                                {postObj.author}
+                            </Typography>
+                            <Typography variant='caption' inline style={{ float: 'right' }}>
+                                {' ' + postObj.date}
+                            </Typography>
+                        </div>
                     </div>
-                </div>
+                </Grid>
+                <Divider />
             </Grid>
-            <Divider />
-        </Grid>
-    </div>
+        </div>
     );
 }
 

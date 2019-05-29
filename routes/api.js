@@ -19,26 +19,25 @@ router.get('/posts', function (req, res) {
     });
 });
 
-router.post('/posts', function (req, res) {
-    //generate uid for post
-    req.body.uid = getUID();
-    console.log(req.body);
+/**
+ * POST new obj, generate uid and save for url param.s
+ */
+router.post('/posts', async (req, res) => {
+    req.body.uid = await getUID();
     Blog.create(req.body).then(function (post) {
         res.send(post);
     });
 });
 
 function getUID() {
-    console.log('getiod')
-    let id = generateUID();
-    console.log(id)
+    return new Promise((resolve, reject) => {
+        let id = generateUID();
         Blog.find({ uid: id }).then(res => {
-            console.log('hello');
-            console.log(res);
-            return res == [] ? getUID() : id;
+            return res.length == 0 ? resolve(id) : getUID();
         }).catch(err => {
-            console.log(err)
+            console.error(err);
         })
+    })
 };
 
 module.exports = router;

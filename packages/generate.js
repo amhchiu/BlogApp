@@ -40,6 +40,4 @@ const generateUID = () => {
     return firstPart+secondPart;
 };
 
-console.log(generateUID());
-
 module.exports = { URLFriendly, generateUID };
