@@ -11,8 +11,11 @@ export const blogpostsFromURL = () => (dispatch) => {
         .catch( err => dispatch({ type: 'LOAD_BLOGPOST_ERROR', payload: err.toString() }));
 };
 //Load blogposts initialisation. 
-export const blogpostFromID = (id) => (dispatch) => {
-    return axios.get(config.BackendAddress)
+export const blogpostFromUID = (uid) => (dispatch) => {
+    return axios.get(config.BackendAddress/api/uid)
+        .then( ({data}) => {
+            dispatch({type: 'LOAD_POST_SUCCESS'})
+        })
 };
 /**
  * POSTs new post to add to db. in handler; creates a uid and title stub. and returns. Or rather, 

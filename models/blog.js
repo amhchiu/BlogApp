@@ -14,6 +14,10 @@ const blogSchema = new Schema({
     uid: {
         type: String,
         required: false
+    },
+    urlTitle: {
+        type: String,
+        required: false
     }
 });
 

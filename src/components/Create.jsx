@@ -63,7 +63,8 @@ class Create extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            value: initialValue 
+            value: initialValue,
+            title: ""
         };
     }
 
@@ -73,10 +74,14 @@ class Create extends React.Component{
         this.setState({value: e.value});
     }
 
-    onClick(){
+    handleTitleChange(e){
+        this.setState({title: e.target.value})
+    }
+
+    onClickSubmit(){
         const content = JSON.stringify(this.state.value.toJSON());
         let query = {
-            title: 'default title',
+            title: this.state.title,
             body: content,
             description: 'default description',
             tags: 'science; religion',
@@ -135,6 +140,7 @@ class Create extends React.Component{
                 inputProps={{
                     'aria-label': 'Description'
                 }}
+                onChange={this.handleTitleChange.bind(this)}
             />
             <Editor 
                 plugins={plugins}
@@ -142,7 +148,7 @@ class Create extends React.Component{
                 onChange={this.handleChange.bind(this)}
                 renderMark={this.renderMark}
             />
-            <Button onClick={this.onClick.bind(this)}>
+            <Button onClick={this.onClickSubmit.bind(this)}>
                 Publish
             </Button>
             </>

@@ -9,8 +9,10 @@ router.get('/title/:title', (req, res) => {
     res.send(friendly);
 });
 
-router.get('/:uid/:title', (req, res) => {
-
+router.get('/:uid', (req, res) => {
+    Blog.find({uid: req.params.uid}).then(post => {
+        res.send(post);
+    })
 });
 
 router.get('/posts', function (req, res) {
@@ -24,6 +26,7 @@ router.get('/posts', function (req, res) {
  */
 router.post('/posts', async (req, res) => {
     req.body.uid = await getUID();
+    req.body.urlTitle = URLFriendly(req.body.title);
     Blog.create(req.body).then(function (post) {
         res.send(post);
     });
@@ -39,5 +42,6 @@ function getUID() {
         })
     })
 };
+
 
 module.exports = router;

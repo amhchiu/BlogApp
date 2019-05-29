@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchBlogPostById: uid => dispatch(blogpostFromID(uid))
+    fetchBlogPostByUID: uid => dispatch(blogpostFromUID(uid))
 });
 
 export default connect(

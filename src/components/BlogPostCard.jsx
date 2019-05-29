@@ -43,7 +43,7 @@ const BlogPostCard = ({ classes, postObj }) => {
         <div>
             <Grid container justify={'center'} spacing={40} className={classes.mainGrid}>
                 <Grid item xs={12} border={1}>
-                    <Link to={'/' + postObj.uid + '/' + postObj.title} className={classes.linkRouterStyling}>
+                    <Link to={'/' + postObj.uid + '/' + postObj.urlTitle} className={classes.linkRouterStyling}>
                         <Typography variant="h6" gutterBottom style={{ cursor: 'pointer' }}>
                             {postObj.title}
                         </Typography>
