@@ -27,4 +27,19 @@ const URLFriendly = (title) => {
     else return friendlyURL;
 };
 
-module.exports = { URLFriendly };
+/**
+ * uid for mongodb. amhchiu.com/:uid/:title /125434/my_first_blogpost
+ * 
+ */
+const generateUID = () => {
+    let firstPart = (Math.random() * 46656) | 0;
+    let secondPart = (Math.random() * 46656) | 0;
+    firstPart = ("000" + firstPart.toString(36)).slice(-3);
+    secondPart = ("000" + secondPart.toString(36)).slice(-3);
+
+    return firstPart+secondPart;
+};
+
+console.log(generateUID());
+
+module.exports = { URLFriendly, generateUID };

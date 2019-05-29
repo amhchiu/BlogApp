@@ -70,7 +70,6 @@ class Create extends React.Component{
 
     handleChange(e){
         let v = e.value.document;
-        console.log(v);
         this.setState({value: e.value});
     }
 
@@ -90,7 +89,6 @@ class Create extends React.Component{
         switch (props.mark.type) {
             case 'bold':
                 return <strong>{props.children}</strong>;
-            //Add our new mark renderers...
             case 'code':
                 return <code>{props.children}</code>;
             case 'italic':

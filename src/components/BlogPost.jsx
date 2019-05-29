@@ -25,7 +25,7 @@ class BlogPost extends React.Component{
 
         const { match: { params }} = this.props;
         console.log(params.title);
-        //this.props.fetchBlogPostByTitle(params.title);
+        this.props.fetchBlogPostById(params.title);
     }
 
     getMarkdownText(){

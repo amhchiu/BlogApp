@@ -19,7 +19,7 @@ const styles = theme => ({
     mainPost: {
         border: 'solid',
         borderWidth: '1px',
-        padding: theme.spacing.unit*2,
+        padding: theme.spacing.unit * 2,
         height: '4em',
         position: 'relative'
     },
@@ -31,80 +31,33 @@ const styles = theme => ({
         left: '1em'
     },
     hoverChange: {
-        '&hover':{
+        '&hover': {
             background: 'blue'
         }
     },
     ...materialFormStyle(theme)
 });
 
-// class BlogPostCard extends React.Component{
-//     constructor(){
-//         super();
-//     }
-
-
-//     _onTitleClick(){
-//         console.log("click");
-//         console.log(URLFriendly('Hello-World'))
-//     }
-
-//     //GenerateTitle should be here. and passed to link.´ 
-
-//     render(){
-//         const { classes } = this.props;
-//         return(
-//             <div> 
-//                 <Grid container justify={'center'} spacing={40} className={classes.mainGrid}> 
-//                     <Grid item xs={12} border={1}>
-//                         <Link to={'/entry/'+this.props.postObj.title} className={classes.linkRouterStyling}>
-//                             <Typography variant="h6" gutterBottom style={{cursor: 'pointer'}}>
-//                                 {this.props.postObj.title}
-//                             </Typography>
-//                         </Link>
-//                         <div className={classes.mainPost}>
-//                             <Typography gutterBottom noWrap variant="body1" gutterBottom >
-//                                 {this.props.postObj.body}
-//                             </Typography>   
-//                             <div className={classes.mainPostSpan}>
-//                                 <Typography variant='caption' inline>
-//                                     {this.props.postObj.author}
-//                                 </Typography>
-//                                 <Typography variant='caption' inline style={{float: 'right'}}>
-//                                     {' '+this.props.postObj.date}
-//                                 </Typography>
-//                             </div>
-//                         </div>
-//                     </Grid>
-//                     <Divider />
-//                 </Grid>
-//             </div>
-
-//         );
-//     }
-// }
-
-const BlogPostCard = (props, {classes}) => {
- 
+const BlogPostCard = ({ classes, postObj }) => {
     return(
-        <div> 
+    <div>
         <Grid container justify={'center'} spacing={40} className={classes.mainGrid}>
             <Grid item xs={12} border={1}>
-                <Link to={'/entry/'+this.props.postObj.title} className={classes.linkRouterStyling}>
-                    <Typography variant="h6" gutterBottom style={{cursor: 'pointer'}}>
-                        {this.props.postObj.title}
+                <Link to={'/entry/' + postObj.title} className={classes.linkRouterStyling}>
+                    <Typography variant="h6" gutterBottom style={{ cursor: 'pointer' }}>
+                        {postObj.title}
                     </Typography>
                 </Link>
                 <div className={classes.mainPost}>
                     <Typography gutterBottom noWrap variant="body1" gutterBottom >
-                        {this.props.postObj.body}
-                    </Typography>   
+                        {postObj.body}
+                    </Typography>
                     <div className={classes.mainPostSpan}>
                         <Typography variant='caption' inline>
-                            {this.props.postObj.author}
+                            {postObj.author}
                         </Typography>
-                        <Typography variant='caption' inline style={{float: 'right'}}>
-                            {' '+this.props.postObj.date}
+                        <Typography variant='caption' inline style={{ float: 'right' }}>
+                            {' ' + postObj.date}
                         </Typography>
                     </div>
                 </div>
