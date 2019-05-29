@@ -12,7 +12,7 @@ router.get('/title/:title', (req, res) => {
 router.get('/:uid', (req, res) => {
     Blog.find({uid: req.params.uid}).then(post => {
         res.send(post);
-    })
+    }) //Add catch
 });
 
 router.get('/posts', function (req, res) {

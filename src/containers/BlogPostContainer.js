@@ -1,9 +1,6 @@
 import { connect } from 'react-redux';
 import BlogPost from '../components/BlogPost';
-import { blogpostFromID } from '../actions/actions';
-import { URLFriendly } from '../../packages/generate';
-
-
+import { blogpostFromUID } from '../actions/actions';
 
 const mapStateToProps = state => ({
     blogposts: state.blog.blogposts

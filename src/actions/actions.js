@@ -12,7 +12,7 @@ export const blogpostsFromURL = () => (dispatch) => {
 };
 //Load blogposts initialisation. 
 export const blogpostFromUID = (uid) => (dispatch) => {
-    return axios.get(config.BackendAddress/api/uid)
+    return axios.get(config.BackendAddress+'/'+uid)
         .then( ({data}) => {
             dispatch({type: 'LOAD_POST_SUCCESS'})
         })

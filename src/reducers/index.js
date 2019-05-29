@@ -1,8 +1,20 @@
 import { combineReducers } from 'redux';
 
+/**
+ * Hydrates state tree from reducer initialstate or from createStore initial state param which takes priority.
+*/
 const initialState = {
     blogposts: [],
     hasError: ''
+};
+
+const initialBlogState = {
+    blogPostArray: [], //array of blogposts limited to n sorted by date. 
+    blogPost: {} //single blogpost when viewing it.
+};
+
+const initialErrorState = {
+    errors: []
 };
 
 const blogPostReducer = (state = initialState, {type, payload} ) => {
@@ -22,6 +34,10 @@ const blogPostReducer = (state = initialState, {type, payload} ) => {
         default:
             return state;
     }
+};
+
+const errorReducer = (state, action) => {
+    
 };
 
 export default combineReducers({
