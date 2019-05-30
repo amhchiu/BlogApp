@@ -2,9 +2,8 @@ import { connect } from 'react-redux';
 import Blog from '../components/Blog';
 import { blogpostsFromURL } from '../actions/actions';
 
-const mapStateToProps = state => ({ 
-    blogposts: state.blog.blogposts,
-    hasError: state.blog.hasError
+const mapStateToProps = ({blog}) => ({ 
+    blogPosts: blog.blogPosts
 });
 
 const mapDispatchToProps = dispatch => ({

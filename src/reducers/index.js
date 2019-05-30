@@ -9,37 +9,37 @@ const initialState = {
 };
 
 const initialBlogState = {
-    blogPostArray: [], //array of blogposts limited to n sorted by date. 
-    blogPost: {} //single blogpost when viewing it.
+    blogPosts: [], //array of blogposts limited to n sorted by date. 
+    currentPost: {} //single blogpost when viewing it.
 };
 
 const initialErrorState = {
-    errors: []
+    error: null
 };
 
-const blogPostReducer = (state = initialState, {type, payload} ) => {
-    switch(type){
-        case 'LOAD_BLOGPOST_SUCCESS':
-        console.log('success')
-        console.log({...state});
-            return {...state, blogposts: payload, hasError: ''};
-        case 'LOAD_BLOGPOST_ERROR':
-        console.log('no success')
-            return {...state, hasError: payload};
+const blogPostReducer = (state = initialBlogState, action) => {
+    switch (action.type) {
+        case 'LOAD_BLOGPOSTS_SUCCESS':
+            return { ...state, blogPosts: action.payload };
         case 'CREATE_BLOGPOST_SUCCESS':
-            console.log('create post success');
-            console.log(payload)
-            console.log(state.blogposts);
-            return {...state, blogposts: [...state.blogposts, payload]}
+            return { ...state, blogPosts: [...state.blogPosts, action.payload] } //add payload obj to state
+        case 'LOAD_POST_SUCCESS':
+            return { ...state, currentPost: action.payload }
         default:
             return state;
     }
 };
 
-const errorReducer = (state, action) => {
-    
+const errorReducer = (state = initialErrorState, action) => {
+    switch (action.type) {
+        case 'LOAD_BLOGPOSTS_ERROR':
+            return { ...state, error: action.payload };
+        default:
+            return state;
+    }
 };
 
 export default combineReducers({
-    blog: blogPostReducer
+    blog: blogPostReducer,
+    error: errorReducer
 });

@@ -21,7 +21,7 @@ class BlogPost extends React.Component{
          * once action queries by id or title; it returns the post object. This is stored in the reducer as blog.currentpost
          * which is called via the container.  
         */
-        console.log(this.props.blogposts)
+        console.log(this.props.blogPosts)
 
         const { match: { params }} = this.props;
         console.log(params.title);

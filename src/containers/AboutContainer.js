@@ -2,8 +2,7 @@ import { connect } from 'react-redux';
 import About from '../components/About';
 
 const mapStateToProps = state => ({ 
-    blogposts: state.blog,
-    hasError: state.hasError
+    blogPosts: state.blog.blogPosts
 });
 
 const mapDispatchToProps = dispatch => ({

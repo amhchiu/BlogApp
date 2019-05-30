@@ -13,11 +13,11 @@ class Blog extends React.Component{
     }
 
     componentDidMount(){ 
-        console.log(this.props.blogposts);
+        console.log(this.props.blogPosts);
     }
 
     render(){
-        let posts = this.props.blogposts
+        let posts = this.props.blogPosts
         return(
             <div>
                 {
@@ -37,6 +37,5 @@ class Blog extends React.Component{
 export default withStyles(styles)(Blog);
 
 Blog.propTypes = {
-    classes: PropTypes.object.isRequired,
-    fetchBlogPosts: PropTypes.any
+    classes: PropTypes.object.isRequired
 };
