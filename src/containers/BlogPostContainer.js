@@ -3,7 +3,8 @@ import BlogPost from '../components/BlogPost';
 import { blogpostFromUID } from '../actions/actions';
 
 const mapStateToProps = ({blog}) => ({
-    blogPosts: blog.blogPosts
+    blogPosts: blog.blogPosts,
+    currentPost: blog.currentPost
 });
 
 const mapDispatchToProps = dispatch => ({

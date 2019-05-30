@@ -3,10 +3,6 @@ import { combineReducers } from 'redux';
 /**
  * Hydrates state tree from reducer initialstate or from createStore initial state param which takes priority.
 */
-const initialState = {
-    blogposts: [],
-    hasError: ''
-};
 
 const initialBlogState = {
     blogPosts: [], //array of blogposts limited to n sorted by date. 

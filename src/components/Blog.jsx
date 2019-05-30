@@ -17,11 +17,11 @@ class Blog extends React.Component{
     }
 
     render(){
-        let posts = this.props.blogPosts
+        let { blogPosts } = this.props;
         return(
             <div>
                 {
-                    posts.map( post =>
+                    blogPosts.map( post =>
                         <BlogPostCard 
                             key={post._id}
                             postObj={post}

@@ -3,23 +3,27 @@ const router = express.Router();
 const Blog = require('../models/blog');
 const { URLFriendly, generateUID } = require('../packages/generate');
 
+router.get('/posts', (_req, res) => {
+    Blog.find({}).then( posts => {
+        res.send(posts);
+    }).catch( err => {
+        res.status(500).send(err);
+    })
+});
+
 router.get('/title/:title', (req, res) => {
     let title = req.params.title;
     let friendly = URLFriendly(title);
     res.send(friendly);
 });
 
-router.get('/:uid', (req, res) => {
+router.get('/uid/:uid', (req, res) => {
+    console.log('uid');
     Blog.find({uid: req.params.uid}).then(post => {
-        res.send(post);
+        res.json(post[0]);
     }) //Add catch
 });
 
-router.get('/posts', function (req, res) {
-    Blog.find({}).then(function (posts) {
-        res.send(posts);
-    });
-});
 
 /**
  * POST new obj, generate uid and save for url param.s
