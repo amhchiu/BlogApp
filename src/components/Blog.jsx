@@ -13,7 +13,8 @@ class Blog extends React.Component{
     }
 
     componentDidMount(){ 
-        console.log(this.props.blogPosts);
+        const { clearCurrentPost } = this.props;
+        clearCurrentPost();
     }
 
     render(){

@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Button, Input } from '@material-ui/core';
+import { Button, InputBase } from '@material-ui/core';
 
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
 
 const styles = theme => ({
-    input: {
-        width: 100
+    inputForm: {
+        fontSize: '2em',
+        color: '#808080'
     }
 });
 
@@ -36,14 +37,14 @@ const initialValue = Value.fromJSON({
 const MarkHotkey = (options) => {
     const { type, key } = options;
     return {
-        onKeyDown(event, editor, next){
+        onKeyDown(event, editor, next) {
             let ctrl = null;
-            if(window.navigator.platform == 'Win32'){
+            if (window.navigator.platform == 'Win32') {
                 ctrl = event.ctrlKey;
             } else {
                 ctrl = event.metaKey;
             }
-            if(!ctrl || event.key != key) return next();
+            if (!ctrl || event.key != key) return next();
             event.preventDefault();
             editor.toggleMark(type);
         },
@@ -58,9 +59,9 @@ const plugins = [
     MarkHotkey({ key: 'u', type: 'underline' }),
 ];
 
-class Create extends React.Component{
+class Create extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             value: initialValue,
@@ -68,17 +69,16 @@ class Create extends React.Component{
         };
     }
 
-
-    handleChange(e){
+    handleChange(e) {
         let v = e.value.document;
-        this.setState({value: e.value});
+        this.setState({ value: e.value });
     }
 
-    handleTitleChange(e){
-        this.setState({title: e.target.value})
+    handleTitleChange(e) {
+        this.setState({ title: e.target.value })
     }
 
-    onClickSubmit(){
+    onClickSubmit() {
         const content = JSON.stringify(this.state.value.toJSON());
         let query = {
             title: this.state.title,
@@ -90,7 +90,7 @@ class Create extends React.Component{
         this.props.publishPost(query);
     }
 
-    renderMark(props, editor, next){
+    renderMark(props, editor, next) {
         switch (props.mark.type) {
             case 'bold':
                 return <strong>{props.children}</strong>;
@@ -107,49 +107,30 @@ class Create extends React.Component{
         }
     }
 
-    getOS() {
-        var userAgent = window.navigator.userAgent,
-            platform = window.navigator.platform,
-            macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-            windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-            iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-            os = null;
-        if (macosPlatforms.indexOf(platform) !== -1) {
-          os = 'Mac OS';
-        } else if (iosPlatforms.indexOf(platform) !== -1) {
-          os = 'iOS';
-        } else if (windowsPlatforms.indexOf(platform) !== -1) {
-          os = 'Windows';
-        } else if (/Android/.test(userAgent)) {
-          os = 'Android';
-        } else if (!os && /Linux/.test(platform)) {
-          os = 'Linux';
-        }
-        return os;
-      }
 
-
-
-    render(){
-        return(
+    render() {
+        const { classes } = this.props;
+        return (
             <>
-            <Input
-                placeholder="Title"
-                //disableUnderline
-                fullWidth
-                inputProps={{
-                    'aria-label': 'Description'
-                }}
-                onChange={this.handleTitleChange.bind(this)}
-            />
-            <Editor 
-                plugins={plugins}
-                value={this.state.value} 
-                onChange={this.handleChange.bind(this)}
-                renderMark={this.renderMark}
-            />
-            <Button onClick={this.onClickSubmit.bind(this)}>
-                Publish
+                <InputBase
+                    placeholder="Title"
+                    className={classes.inputForm}
+                    inputProps={{
+                        'aria-label': 'Description'
+                    }}
+                    autoFocus
+                    fullWidth
+                    multiline
+                    onChange={this.handleTitleChange.bind(this)}
+                />
+                <Editor
+                    plugins={plugins}
+                    value={this.state.value}
+                    onChange={this.handleChange.bind(this)}
+                    renderMark={this.renderMark}
+                />
+                <Button onClick={this.onClickSubmit.bind(this)}>
+                    Publish
             </Button>
             </>
         );

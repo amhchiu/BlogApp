@@ -21,6 +21,9 @@ const blogPostReducer = (state = initialBlogState, action) => {
             return { ...state, blogPosts: [...state.blogPosts, action.payload] } //add payload obj to state
         case 'LOAD_POST_SUCCESS':
             return { ...state, currentPost: action.payload }
+        case 'CLEAR_CURRENTPOST':
+            console.log('clear currentpost');
+            return { ...state, currentPost: {}}
         default:
             return state;
     }
@@ -30,6 +33,8 @@ const errorReducer = (state = initialErrorState, action) => {
     switch (action.type) {
         case 'LOAD_BLOGPOSTS_ERROR':
             return { ...state, error: action.payload };
+        case 'CREATE_POST_ERROR':
+            return { ...state, error: action.payload};
         default:
             return state;
     }

@@ -7,7 +7,8 @@ const mapStateToProps = ({blog}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchBlogPosts: () => dispatch(blogpostsFromURL())
+    fetchBlogPosts: () => dispatch(blogpostsFromURL()),
+    clearCurrentPost: () => dispatch({type: 'CLEAR_CURRENTPOST'})
 });
 
 export default connect(

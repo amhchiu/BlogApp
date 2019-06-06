@@ -10,7 +10,7 @@ export const blogpostsFromURL = () => (dispatch) => {
 };
 //Load blogposts initialisation. 
 export const blogpostFromUID = (uid) => (dispatch) => {
-    return axios.get(config.Backend+'/api/uid/'+uid)
+    return axios.get(config.Backend+'/api/uid/'+uid) //localhost:8080/api/uid/:uid
         .then( ({data}) => {
             console.log(data);
             dispatch({type: 'LOAD_POST_SUCCESS', payload: data})
@@ -21,11 +21,15 @@ export const blogpostFromUID = (uid) => (dispatch) => {
  */
 export const createNewPost = (query) => (dispatch) => {
     console.log(query);
-    axios.post('http://localhost:8080/api/posts', query)
+    return axios.post('http://localhost:8080/api/posts', query)
         .then( ({data}) => {
+            console.log('in loop')
             dispatch({type: 'CREATE_BLOGPOST_SUCCESS', payload: data});
         })
-        .catch( err => dispatch({ type: 'CREATE_POST_ERROR', payload: err }));
+        .catch( err => {
+            console.error(err);
+            dispatch({ type: 'CREATE_POST_ERROR', payload: err })
+        });
 };
 
 //equiv to cnp(query){ return func(dispatch){ //dosomething }}... currying
