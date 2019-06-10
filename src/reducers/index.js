@@ -13,6 +13,10 @@ const initialErrorState = {
     error: null
 };
 
+const initialNavState = {
+    create: false
+};
+
 const blogPostReducer = (state = initialBlogState, action) => {
     switch (action.type) {
         case 'LOAD_BLOGPOSTS_SUCCESS':

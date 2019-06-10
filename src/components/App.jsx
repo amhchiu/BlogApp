@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Nav from './Nav.jsx';
-import Main from './Main.jsx';
+import NavContainer from '../containers/NavContainer';
+import Main from './Main';
 
 const styles = theme => ({
     root: {
@@ -33,7 +33,7 @@ class App extends React.Component{
         const { classes } = this.props;
         return(
             <div className={classes.layout}>
-                <Nav />
+                <NavContainer />
                 <Main />
             </div>
         );

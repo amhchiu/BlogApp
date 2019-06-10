@@ -12,7 +12,6 @@ export const blogpostsFromURL = () => (dispatch) => {
 export const blogpostFromUID = (uid) => (dispatch) => {
     return axios.get(config.Backend+'/api/uid/'+uid) //localhost:8080/api/uid/:uid
         .then( ({data}) => {
-            console.log(data);
             dispatch({type: 'LOAD_POST_SUCCESS', payload: data})
         }).catch(err => console.log(err));
 };
@@ -23,11 +22,9 @@ export const createNewPost = (query) => (dispatch) => {
     console.log(query);
     return axios.post('http://localhost:8080/api/posts', query)
         .then( ({data}) => {
-            console.log('in loop')
             dispatch({type: 'CREATE_BLOGPOST_SUCCESS', payload: data});
         })
         .catch( err => {
-            console.error(err);
             dispatch({ type: 'CREATE_POST_ERROR', payload: err })
         });
 };

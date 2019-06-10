@@ -24,6 +24,7 @@
     "redux-thunk": "^2.3.0",
     "slate": "^0.44.12",
     "slate-html-serializer": "^0.8.5",
+    "slate-plain-serializer": "^0.7.6",
     "slate-react": "^0.21.18"
   },
   "devDependencies": {

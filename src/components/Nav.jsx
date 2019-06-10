@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 
 import { Link } from 'react-router-dom';
-import {materialFormStyle} from '../styles/styles';
+import { materialFormStyle } from '../styles/styles';
 
 const styles = theme => ({
     toolbarMain: {
@@ -25,14 +25,28 @@ const styles = theme => ({
     ...materialFormStyle(theme)
 });
 
+const createOrPublish = () => {
+    const { location: { pathname } } = this.props;
+    return pathname === '/Create' ? (
+        Button
+    ) : (
+        <Link align='center' to='/Create' className={classes.linkRouterStyling}>
+                <Typography variant="overline" gutterBottom inline align="center" className={classes.toolbarTitle}>Create</Typography>
+        </Link>
+    );
+};
 
-class Nav extends React.Component{
-    render(){
+class Nav extends React.Component {
+    constructor(props){
+        super(props);
+
+    }
+    render() {
         const { classes } = this.props;
-        return(
+        return (
             <div>
                 <Toolbar className={classes.toolbarMain}>
-                    <Avatar alt="amhchiu-avatar" src='../media/eikichi_onizuka.jpg'  className={classes.avatar} />
+                    <Avatar alt="amhchiu-avatar" src='../media/eikichi_onizuka.jpg' className={classes.avatar} />
                     <Link to='/' className={classes.linkRouterStyling}>
                         <Typography variant="h6" color="inherit">
                             AMHCHIU

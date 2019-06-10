@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
-import Create from '../components/Create';
+import { withRouter } from 'react-router';
+import Nav from '../components/Nav';
 import { createNewPost } from '../actions/actions';
 
-const mapStateToProps = ({ blog }) => ({
-    blogPosts: blog.blogPosts
+const mapStateToProps = (state) => ({
+
 });
 
 const mapDispatchToProps = dispatch => ({
     publishPost: query => dispatch(createNewPost(query))
 });
 
-export default connect(
-    mapStateToProps,
+export default withRouter(connect(
     mapDispatchToProps
-)(Create);
+)(Nav));

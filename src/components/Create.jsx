@@ -8,8 +8,23 @@ import { Value } from 'slate';
 
 const styles = theme => ({
     inputForm: {
-        fontSize: '2em',
-        color: '#808080'
+        fontSize: '2rem',
+        color: '#000',
+        borderStyle: 'solid',
+        borderWidth: '2px',
+        borderColor: '#FFF',
+        paddingLeft: '0.5rem',
+        '&:hover': {
+            borderStyle: 'solid',
+            borderWidth: '2px',
+            borderColor: '#607d8b'
+        }
+    },
+    editor: {
+        height: '50vh',
+        paddingTop: '0.5rem',
+        paddingLeft: '0.5rem',
+        fontFamily: 'Roboto'
     }
 });
 
@@ -18,13 +33,13 @@ const initialValue = Value.fromJSON({
         nodes: [
             {
                 object: 'block',
-                type: 'paragraph',
+                type: 'line',
                 nodes: [
                     {
                         object: 'text',
                         leaves: [
                             {
-                                text: 'A line of text in a paragraph.',
+                                text: '',
                             },
                         ],
                     },
@@ -124,6 +139,7 @@ class Create extends React.Component {
                     onChange={this.handleTitleChange.bind(this)}
                 />
                 <Editor
+                    className={classes.editor}
                     plugins={plugins}
                     value={this.state.value}
                     onChange={this.handleChange.bind(this)}
@@ -131,7 +147,7 @@ class Create extends React.Component {
                 />
                 <Button onClick={this.onClickSubmit.bind(this)}>
                     Publish
-            </Button>
+                </Button>
             </>
         );
     }
@@ -140,5 +156,5 @@ class Create extends React.Component {
 export default withStyles(styles)(Create);
 
 Create.propTypes = {
-
+    classes: PropTypes.object.isRequired 
 };
