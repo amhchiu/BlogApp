@@ -28,51 +28,7 @@ const styles = theme => ({
     }
 });
 
-const initialValue = Value.fromJSON({
-    document: {
-        nodes: [
-            {
-                object: 'block',
-                type: 'line',
-                nodes: [
-                    {
-                        object: 'text',
-                        leaves: [
-                            {
-                                text: '',
-                            },
-                        ],
-                    },
-                ],
-            },
-        ],
-    },
-});
 
-const MarkHotkey = (options) => {
-    const { type, key } = options;
-    return {
-        onKeyDown(event, editor, next) {
-            let ctrl = null;
-            if (window.navigator.platform == 'Win32') {
-                ctrl = event.ctrlKey;
-            } else {
-                ctrl = event.metaKey;
-            }
-            if (!ctrl || event.key != key) return next();
-            event.preventDefault();
-            editor.toggleMark(type);
-        },
-    };
-};
-
-const plugins = [
-    MarkHotkey({ key: 'b', type: 'bold' }),
-    MarkHotkey({ key: '`', type: 'code' }),
-    MarkHotkey({ key: 'i', type: 'italic' }),
-    MarkHotkey({ key: ';', type: 'strikethrough' }),
-    MarkHotkey({ key: 'u', type: 'underline' }),
-];
 
 class Create extends React.Component {
 
@@ -80,43 +36,32 @@ class Create extends React.Component {
         super(props);
         this.state = {
             value: initialValue,
-            title: "",
-            updateDraft: false
+            title: ""
         };
     }
 
-    // async checkDraftUpdate(){
-    //     let { updateDraft } = this.state;
-    //     let { loadDraft, draft } = this.props;
-    // }
+
     
     componentDidMount(){
-        let { loadDraft, draft } = this.props;
-        /**
-         * click on /create -> loadDraft. get request. mongodb find({publish: draft, user: user}, {}) returns array of drafts by user id. 
-         * if res array.length == 0; continue. 
-         * onChange -> post a new draft. action/createDraft. 
-         * res = success. setState update : true
-         * onChange dispatch(updateDraft)
-         * 
-         *  axios.post(/api/:userid/draft, newDraft). 
-         * 
-         * if array.length = 0 -> axios.post(/api/:userid/draft)
-         * else. axios.put('') to update the draft
-         */
-
-
-
-
+  
     }
 
-    handleChange(e) {
+    handleContentChange(e) {
         let v = e.value.document;
         this.setState({ value: e.value });
     }
 
     handleTitleChange(e) {
         this.setState({ title: e.target.value })
+    }
+    
+    /**
+     * We are invoking handleChange directly, so we use currying to create
+     * a new instance for every invocation. Oterhwise pass input name directly without currying. 
+     * curry: this.handleChange('fieldName');
+     */
+    handleChange = (name) => (event) => {
+        this.setState({[name]: event.target.value})
     }
 
     onClickSubmit() {
@@ -168,7 +113,7 @@ class Create extends React.Component {
                     className={classes.editor}
                     plugins={plugins}
                     value={this.state.value}
-                    onChange={this.handleChange.bind(this)}
+                    onChange={this.handleContentChange.bind(this)}
                     renderMark={this.renderMark}
                 />
                 <Button onClick={this.onClickSubmit.bind(this)}>
@@ -184,3 +129,49 @@ export default withStyles(styles)(Create);
 Create.propTypes = {
     classes: PropTypes.object.isRequired 
 };
+
+const initialValue = Value.fromJSON({
+    document: {
+        nodes: [
+            {
+                object: 'block',
+                type: 'paragraph',
+                nodes: [
+                    {
+                        object: 'text',
+                        leaves: [
+                            {
+                                text: 'A line of text in a paragraph.',
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    },
+});
+
+const MarkHotkey = (options) => {
+    const { type, key } = options;
+    return {
+        onKeyDown(event, editor, next) {
+            let ctrl = null;
+            if (window.navigator.platform == 'Win32') {
+                ctrl = event.ctrlKey;
+            } else {
+                ctrl = event.metaKey;
+            }
+            if (!ctrl || event.key != key) return next();
+            event.preventDefault();
+            editor.toggleMark(type);
+        },
+    };
+};
+
+const plugins = [
+    MarkHotkey({ key: 'b', type: 'bold' }),
+    MarkHotkey({ key: '`', type: 'code' }),
+    MarkHotkey({ key: 'i', type: 'italic' }),
+    MarkHotkey({ key: ';', type: 'strikethrough' }),
+    MarkHotkey({ key: 'u', type: 'underline' }),
+];

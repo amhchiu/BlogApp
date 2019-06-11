@@ -61,4 +61,4 @@ const plugins = [
     MarkHotkey({ key: 'u', type: 'underline' }),
 ];
 
-module.export = { renderMark };
+module.export = { initialValue };
