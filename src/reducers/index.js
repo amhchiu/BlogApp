@@ -4,13 +4,25 @@ import { combineReducers } from 'redux';
  * Hydrates state tree from reducer initialstate or from createStore initial state param which takes priority.
 */
 
+/**
+ * array of blogposts limited to n sorted by date. 
+ * single blogpost when viewing it
+ */
 const initialBlogState = {
-    blogPosts: [], //array of blogposts limited to n sorted by date. 
-    currentPost: {} //single blogpost when viewing it.
+    blogPosts: [], 
+    currentPost: {}, 
+    draft: {
+        title: "",
+        body: ""
+    }
 };
 
 const initialErrorState = {
     error: null
+};
+
+const initialDraftState = {
+
 };
 
 const initialNavState = {
@@ -24,10 +36,12 @@ const blogPostReducer = (state = initialBlogState, action) => {
         case 'CREATE_BLOGPOST_SUCCESS':
             return { ...state, blogPosts: [...state.blogPosts, action.payload] } //add payload obj to state
         case 'LOAD_POST_SUCCESS':
-            return { ...state, currentPost: action.payload }
+            return { ...state, currentPost: action.payload };
         case 'CLEAR_CURRENTPOST':
             console.log('clear currentpost');
-            return { ...state, currentPost: {}}
+            return { ...state, currentPost: {}};
+        case 'LOAD_DRAFT':
+            return {...state, draft: action.payload};
         default:
             return state;
     }

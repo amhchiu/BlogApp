@@ -36,6 +36,14 @@ router.post('/posts', async (req, res) => {
     });
 });
 
+router.get('/user/draft', async (req, res) => {
+    
+});
+
+
+/**
+ * Generates a unique 6 character alphanumeric random string. Has 36^3+36^3 permutations 
+ */
 function getUID() {
     return new Promise((resolve, reject) => {
         let id = generateUID();

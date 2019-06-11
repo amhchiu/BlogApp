@@ -29,4 +29,27 @@ export const createNewPost = (query) => (dispatch) => {
         });
 };
 
+/**
+ * Load draft on /Create. via user. 
+ */
+export const loadDraft = () => (dispatch) => {
+    return axios.get(config.Backend+'/api/user/draft')
+        .then( ({data}) => {
+            dispatch({type: 'LOAD_DRAFT_SUCCESS', payload: data});
+        })
+        .catch( err => {
+            dispatch({ type: 'LOAD_DRAFT_ERROR', payload: err});
+        })
+};
+
+export const updateDraft = (newDraft) => (dispatch) => {
+    return axios.put(config.Backend+'/api/user/draft', newDraft)
+        .then( ({data}) => {
+            dispatch({ type: 'UPDATE_DRAFT', payload: data});
+        })
+        .catch( err => {
+            dispatch({ type: 'UPDATE_DRAFT_ERROR', payload: err});
+        })
+};
+
 //equiv to cnp(query){ return func(dispatch){ //dosomething }}... currying

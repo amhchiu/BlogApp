@@ -80,8 +80,34 @@ class Create extends React.Component {
         super(props);
         this.state = {
             value: initialValue,
-            title: ""
+            title: "",
+            updateDraft: false
         };
+    }
+
+    // async checkDraftUpdate(){
+    //     let { updateDraft } = this.state;
+    //     let { loadDraft, draft } = this.props;
+    // }
+    
+    componentDidMount(){
+        let { loadDraft, draft } = this.props;
+        /**
+         * click on /create -> loadDraft. get request. mongodb find({publish: draft, user: user}, {}) returns array of drafts by user id. 
+         * if res array.length == 0; continue. 
+         * onChange -> post a new draft. action/createDraft. 
+         * res = success. setState update : true
+         * onChange dispatch(updateDraft)
+         * 
+         *  axios.post(/api/:userid/draft, newDraft). 
+         * 
+         * if array.length = 0 -> axios.post(/api/:userid/draft)
+         * else. axios.put('') to update the draft
+         */
+
+
+
+
     }
 
     handleChange(e) {
