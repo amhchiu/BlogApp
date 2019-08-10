@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const dotenv = require('dotenv').config({path: __dirname + './.env'});
 
 module.exports = {
     mode: 'development',
@@ -10,7 +11,8 @@ module.exports = {
         host: 'localhost',
         headers: {
             'Access-Control-Allow-Headers': '*'
-        }
+        },
+        historyApiFallback: true
     },
     output: {
         path: __dirname + '/public/bundles/',
@@ -38,5 +40,10 @@ module.exports = {
                 }]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            "process.env": JSON.stringify(dotenv.parsed)
+        })
+    ]
 };

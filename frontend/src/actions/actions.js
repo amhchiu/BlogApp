@@ -1,5 +1,4 @@
 import axios from 'axios';
-require('dotenv').config();
 
 export const blogpostsFromURL = () => (dispatch) => {
     return axios.get(`${process.env.API_URL}/api/posts`)
