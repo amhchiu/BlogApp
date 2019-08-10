@@ -9,7 +9,7 @@ module.exports = {
         port: 3000,
         host: 'localhost',
         headers: {
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Headers': '*'
         }
     },
     output: {

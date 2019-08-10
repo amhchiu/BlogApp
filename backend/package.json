@@ -13,6 +13,5 @@
     "immutable": "^4.0.0-rc.12",
     "mongoose": "^5.4.3"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
