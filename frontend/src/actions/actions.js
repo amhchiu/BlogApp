@@ -1,8 +1,8 @@
 import axios from 'axios';
-import config from '../config.json';
+require('dotenv').config();
 
 export const blogpostsFromURL = () => (dispatch) => {
-    return axios.get('http://localhost:8080/api/posts')
+    return axios.get(`${process.env.API_URL}/api/posts`)
         .then( ({data}) => {
             dispatch({type: 'LOAD_BLOGPOSTS_SUCCESS', payload: data});
         })
@@ -10,7 +10,7 @@ export const blogpostsFromURL = () => (dispatch) => {
 };
 //Load blogposts initialisation. 
 export const blogpostFromUID = (uid) => (dispatch) => {
-    return axios.get(config.Backend+'/api/uid/'+uid) //localhost:8080/api/uid/:uid
+    return axios.get(`${process.env.API_URL}/api/uid/${uid}`) //localhost:8080/api/uid/:uid
         .then( ({data}) => {
             dispatch({type: 'LOAD_POST_SUCCESS', payload: data})
         }).catch(err => console.log(err));
@@ -20,7 +20,7 @@ export const blogpostFromUID = (uid) => (dispatch) => {
  */
 export const createNewPost = (query) => (dispatch) => {
     console.log(query);
-    return axios.post('http://localhost:8080/api/posts', query)
+    return axios.post(`${process.env.API_URL}/api/posts`, query)
         .then( ({data}) => {
             dispatch({type: 'CREATE_BLOGPOST_SUCCESS', payload: data});
         })
@@ -33,7 +33,7 @@ export const createNewPost = (query) => (dispatch) => {
  * Load draft on /Create. via user. 
  */
 export const loadDraft = () => (dispatch) => {
-    return axios.get(config.Backend+'/api/user/draft')
+    return axios.get(`${process.env.API_URL}/api/user/draft`)
         .then( ({data}) => {
             dispatch({type: 'LOAD_DRAFT_SUCCESS', payload: data});
         })
@@ -43,7 +43,7 @@ export const loadDraft = () => (dispatch) => {
 };
 
 export const updateDraft = (newDraft) => (dispatch) => {
-    return axios.put(config.Backend+'/api/user/draft', newDraft)
+    return axios.put(`${process.env.API_URL}/api/user/draft`, newDraft)
         .then( ({data}) => {
             dispatch({ type: 'UPDATE_DRAFT', payload: data});
         })
