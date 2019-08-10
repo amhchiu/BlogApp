@@ -39,10 +39,15 @@ const createOrPublish = () => {
 class Nav extends React.Component {
     constructor(props){
         super(props);
-
     }
+
+    checkCreateOrPublish(){
+        
+    }
+
     render() {
-        const { classes } = this.props;
+        const { classes, location } = this.props;
+        console.log(location);
         return (
             <div>
                 <Toolbar className={classes.toolbarMain}>

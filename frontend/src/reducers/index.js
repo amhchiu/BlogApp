@@ -12,8 +12,7 @@ const initialBlogState = {
     blogPosts: [], 
     currentPost: {}, 
     draft: {
-        title: "",
-        body: ""
+        
     }
 };
 

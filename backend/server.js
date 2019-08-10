@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const router = require('./routes/api');
@@ -8,7 +10,11 @@ const router = require('./routes/api');
 mongoose.connect("mongodb://localhost:27017/blogdb", {useNewUrlParser: true});
 
 // ---Middleware---
-app.use(express.static('public'));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -19,14 +25,14 @@ i.e. for a GET req. We define a schema to validate against. we define the Model 
 */
 app.use('/api', router);
 
-app.get('/*', function(req, res){
+/**
+ * app.get('/*', function(req, res){
     res.sendFile(__dirname + "/public/index.html", function(err){
         if(err)res.status(500).send(err);
     });
 });
+ */
 
-//Listen for requests on :8080
-const PORT = 8080;
-app.listen(PORT, () => {
-    console.log("Server started on PORT: ", PORT);
+app.listen(process.env.PORT, () => {
+    console.log(`Server started on PORT: ${process.env.PORT}`);
 });
