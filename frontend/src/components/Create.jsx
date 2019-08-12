@@ -40,12 +40,6 @@ class Create extends React.Component {
         };
     }
 
-
-    
-    componentDidMount(){
-  
-    }
-
     handleContentChange(e) {
         let v = e.value.document;
         this.setState({ value: e.value });
@@ -74,6 +68,22 @@ class Create extends React.Component {
             author: 'references account'
         };
         this.props.publishPost(query);
+    }
+
+    onChangeSave = (e) => {
+        const content = JSON.stringify(this.state.value.toJSON());
+        let query = {
+            title: this.state.title,
+            body: content,
+            description: 'default description',
+            tags: 'science; religion',
+            author: 'references account'
+        };
+        
+        setTimeout(() => {
+
+        }, 2000);
+
     }
 
     renderMark(props, editor, next) {

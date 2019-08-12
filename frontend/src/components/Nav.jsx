@@ -30,31 +30,30 @@ const createOrPublish = () => {
     return pathname === '/Create' ? (
         Button
     ) : (
-        <Link align='center' to='/Create' className={classes.linkRouterStyling}>
+            <Link align='center' to='/Create' className={classes.linkRouterStyling}>
                 <Typography variant="overline" gutterBottom inline align="center" className={classes.toolbarTitle}>Create</Typography>
-        </Link>
-    );
+            </Link>
+        );
 };
 
 class Nav extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
-    checkCreateOrPublish(){
+    renderPublishButton(){
         
     }
 
     render() {
         const { classes, location } = this.props;
-        console.log(location);
         return (
             <div>
                 <Toolbar className={classes.toolbarMain}>
                     <Avatar alt="amhchiu-avatar" src='../media/eikichi_onizuka.jpg' className={classes.avatar} />
                     <Link to='/' className={classes.linkRouterStyling}>
                         <Typography variant="h6" color="inherit">
-                            AMHCHIU
+                            AMHCHIU : {location.pathname}
                         </Typography>
                     </Link>
                 </Toolbar>
@@ -62,9 +61,13 @@ class Nav extends React.Component {
                     <Link to='/About' className={classes.linkRouterStyling}>
                         <Typography variant="overline" gutterBottom inline align="center" className={classes.toolbarTitle}>About</Typography>
                     </Link>
-                    <Link align='center' to='/Create' className={classes.linkRouterStyling}>
-                        <Typography variant="overline" gutterBottom inline align="center" className={classes.toolbarTitle}>Create</Typography>
-                    </Link>
+                    {location.pathname === '/Create' ? (
+                        <div>Publish</div>
+                    ) : (
+                            <Link align='center' to='/Create' className={classes.linkRouterStyling}>
+                                <Typography variant="overline" gutterBottom inline align="center" className={classes.toolbarTitle}>Create</Typography>
+                            </Link>
+                        )}
                 </Toolbar>
             </div>
         );

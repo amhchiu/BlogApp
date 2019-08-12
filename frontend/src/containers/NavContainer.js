@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    savePost: query => dispatch(savePost(query)),
     publishPost: query => dispatch(createNewPost(query))
 });
 

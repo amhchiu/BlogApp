@@ -28,6 +28,9 @@ export const createNewPost = (query) => (dispatch) => {
         });
 };
 
+export const savePost = (query) => (dispatch) => {
+    
+}
 /**
  * Load draft on /Create. via user. 
  */

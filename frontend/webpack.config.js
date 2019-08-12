@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const dotenv = require('dotenv').config({path: __dirname + './.env'});
+const dotenv = require('dotenv').config({path: __dirname + '/.env'});
 
 module.exports = {
     mode: 'development',
